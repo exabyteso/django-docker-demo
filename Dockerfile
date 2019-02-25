@@ -34,3 +34,13 @@ RUN pip install -r requirements.txt
 
 #Copy all the files in the current directory into /myapp
 ADD . /myapp
+
+#Make the entrypoint executable
+RUN ["chmod", "+x", "/myapp/entrypoint.sh"]
+
+#"sh" specifes that the docker application is to do shell processing for the commands
+in the entrypoint
+#"/myapp/entrypoint.sh" specifies the location of the entrypoint
+#Refer to https://docs.docker.com/engine/reference/builder/#entrypoint for more
+#details on entrypoint configuration
+ENTRYPOINT ["sh", "/myapp/entrypoint.sh"]
